@@ -8,7 +8,11 @@ class MenusController < ApplicationController
   end
 
   def search
-    menu = Menu.all
+    menu = if params[:q].present?
+      Dish.where('name like ?', "%#{params[:q]}%").first&.menu
+    else
+      Menu.all
+    end
   
     render json: menu.to_json(include: [:dishes])
   end
