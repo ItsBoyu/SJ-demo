@@ -5,6 +5,9 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render file: 'public/404.html', 
+           status: 404
   end
 
   def search
