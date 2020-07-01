@@ -9,7 +9,7 @@ class MenusController < ApplicationController
 
   def search
     menu = if params[:q].present?
-      Dish.where('name like ?', "%#{params[:q]}%").first&.menu
+      Dish.where('name like ?', "%#{params[:q]}%").first&.menus
     else
       Menu.all
     end
