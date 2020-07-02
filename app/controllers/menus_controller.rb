@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   def index
-    @menus = Menu.all
+    @menus = current_menu || Menu.all
   end
 
   def show
@@ -15,5 +15,17 @@ class MenusController < ApplicationController
     end
   
     render json: menu.to_json(include: [:dishes])
+  end
+
+  private
+
+  def current_menu
+    time = Time.now.strftime('%H').to_i
+    case time
+    when lunchtime = 11..15
+      Menu.for_mealtime('lunch')
+    when dinnertime = 17..21
+      Menu.for_mealtime('dinner')
+    end
   end
 end
