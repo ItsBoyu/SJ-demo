@@ -1,10 +1,37 @@
-<%= @menu.name %>
+<!-- <%= @menu.name %>
 
 <% @menu.dishes.each do |dish| %>
 <ul>
   <li><%= dish.name %></li>
   <li><%= dish.price %></li>
 </ul>
-<% end %>
+<% end %> -->
 
-<%= link_to 'back', root_path %>
+<div class="container">
+  <div>
+    <h1 class="text-center my-3">
+      <%= @menu.name %> Menu
+    </h1>
+  </div>
+  <% @menu.dishes.each do |dish| %>
+  <div class="d-flex justify-content-center">
+    <div class="card mb-3" style="max-width: 720px;">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <img class="w-100 h-100" src="<%= dish.img_url %>"  alt="<%= dish.name %>">
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h3 class="card-title"><%= dish.name %></h3>
+            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque fugit repellendus repellat sequi nobis. Placeat explicabo iste iusto magni officia, quisquam cum natus fugit, possimus, nulla est aut deserunt recusandae?</p>
+            <p class="card-text">
+              <small class="text-muted">price：<%= dish.price %></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <%= link_to 'back', root_path, class:'text-decoration-none btn btn-light' %>
+</div>

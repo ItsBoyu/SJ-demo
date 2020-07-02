@@ -6,13 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Menu.create(name: 'Menu1')
-Menu.create(name: 'Menu2')
-m1 = Menu.find_by(name: 'Menu1')
-m2 = Menu.find_by(name: 'Menu2')
-m1.dishes.create(name: 'dish1', price: 180)
-m1.dishes.create(name: 'dish2', price: 180)
-m1.dishes.create(name: 'dish3', price: 180)
-m2.dishes.create(name: 'dish4', price: 180)
-m2.dishes.create(name: 'dish5', price: 180)
-m2.dishes.create(name: 'dish6', price: 180)
+m1 = Menu.create(name: 'Lunch')
+m2 = Menu.create(name: 'Dinner', period: 'dinner')
+m1.dishes.create(name: 'Uni', price: 11, img_url: 'https://ubin.io/cFk1zb')
+m2.dishes.create(name: 'Shrimp', price: 6, img_url: 'https://ubin.io/st62vH')
+
+d1 = Dish.create(name: 'Salmon', price: 9, img_url: 'https://ubin.io/58qd4A')
+d2 = Dish.create(name: 'Avocado', price: 7, img_url: 'https://ubin.io/nC4Udr')
+
+[d1, d2].each do |e|
+  MenuDish.create(menu: m1, dish: e)
+  MenuDish.create(menu: m2, dish: e)
+end
