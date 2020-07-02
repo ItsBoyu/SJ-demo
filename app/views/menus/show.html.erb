@@ -1,0 +1,10 @@
+<%= @menu.name %>
+
+<% @menu.dishes.each do |dish| %>
+<ul>
+  <li><%= dish.name %></li>
+  <li><%= dish.price %></li>
+</ul>
+<% end %>
+
+<%= link_to 'back', root_path %>
