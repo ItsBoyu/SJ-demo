@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   def index
-    @menus = current_menu || Menu.all
+    @menus = current_menu || Menu.includes(:dishes)
   end
 
   def show
@@ -26,9 +26,9 @@ class MenusController < ApplicationController
     time = Time.now.strftime('%H').to_i
     case time
     when lunchtime = 11..15
-      Menu.for_mealtime('lunch')
+      Menu.for_mealtime('lunch').includes(:dishes)
     when dinnertime = 17..21
-      Menu.for_mealtime('dinner')
+      Menu.for_mealtime('dinner').includes(:dishes)
     end
   end
 end

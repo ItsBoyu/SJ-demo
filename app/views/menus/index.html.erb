@@ -2,4 +2,7 @@
 
 <% @menus.each do |menu| %>
   <%= link_to menu.name, menu_path(menu.id) %>
+  <% menu.dishes.each do |dish| %>
+    <%= dish.name %> | <%= dish.price %>
+  <% end %>
 <% end %>
